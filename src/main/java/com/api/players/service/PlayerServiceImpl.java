@@ -27,7 +27,9 @@ public class PlayerServiceImpl implements IPlayerService{
 				.age(playerDTO.getAge())
 				.team(playerDTO.getTeam())
 				.position(playerDTO.getPosition())
-				.urlImage(playerDTO.getUrlImage()).build();
+				.urlImage(playerDTO.getUrlImage())
+				.logoTeam(playerDTO.getLogoTeam())
+				.build();
 		return playerRepository.save(playerSave);
 	}
 

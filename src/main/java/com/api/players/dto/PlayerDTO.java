@@ -15,4 +15,5 @@ public class PlayerDTO {
 	private String team;
 	private String position;
 	private String urlImage;
+	private String logoTeam;
 }

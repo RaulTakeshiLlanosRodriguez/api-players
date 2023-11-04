@@ -29,4 +29,6 @@ public class Player {
 	private String position;
 	@Column(name = "url_image")
 	private String urlImage;
+	@Column(name = "logo_team")
+	private String logoTeam;
 }

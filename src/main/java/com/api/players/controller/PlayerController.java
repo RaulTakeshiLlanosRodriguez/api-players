@@ -44,6 +44,7 @@ public class PlayerController {
 				.team(playerCreate.getTeam())
 				.position(player.getPosition())
 				.urlImage(playerCreate.getUrlImage())
+				.logoTeam(playerCreate.getLogoTeam())
 				.build();
 		return player;
 	}
@@ -61,6 +62,7 @@ public class PlayerController {
 					.team(playerEditado.getTeam())
 					.position(playerEditado.getPosition())
 					.urlImage(playerEditado.getUrlImage())
+					.logoTeam(playerEditado.getLogoTeam())
 					.build();
 			return playerDTO;
 		}else {
@@ -86,6 +88,7 @@ public class PlayerController {
 				.team(playerEncontrado.getTeam())
 				.position(playerEncontrado.getPosition())
 				.urlImage(playerEncontrado.getUrlImage())
+				.logoTeam(playerEncontrado.getLogoTeam())
 				.build();
 	}
 	
