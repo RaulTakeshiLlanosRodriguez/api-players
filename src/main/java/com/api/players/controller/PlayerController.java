@@ -19,8 +19,9 @@ import com.api.players.dto.PlayerDTO;
 import com.api.players.model.Player;
 import com.api.players.service.IPlayerService;
 
-@RestController
+
 @CrossOrigin
+@RestController
 @RequestMapping("api/v1")
 public class PlayerController {
 	
@@ -35,17 +36,33 @@ public class PlayerController {
 	
 	@PostMapping("player")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Player createPlayer(@RequestBody PlayerDTO player) {
-		return playerService.save(player);
+	public PlayerDTO createPlayer(@RequestBody PlayerDTO player) {
+		Player playerCreate = playerService.save(player);
+		player = PlayerDTO.builder().id(playerCreate.getId())
+				.namePlayer(playerCreate.getNamePlayer())
+				.age(playerCreate.getAge())
+				.team(playerCreate.getTeam())
+				.position(player.getPosition())
+				.urlImage(playerCreate.getUrlImage())
+				.build();
+		return player;
 	}
 	
 	@PutMapping("player/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Player updatePlayer(@RequestBody PlayerDTO playerDTO, @PathVariable Long id) {
+	public PlayerDTO updatePlayer(@RequestBody PlayerDTO playerDTO, @PathVariable Long id) {
 		
 		if(playerService.existsId(id)) {
 			playerDTO.setId(id);
-			return playerService.save(playerDTO);
+			Player playerEditado = playerService.save(playerDTO);
+			playerDTO = PlayerDTO.builder().id(playerEditado.getId())
+					.namePlayer(playerEditado.getNamePlayer())
+					.age(playerEditado.getAge())
+					.team(playerEditado.getTeam())
+					.position(playerEditado.getPosition())
+					.urlImage(playerEditado.getUrlImage())
+					.build();
+			return playerDTO;
 		}else {
 			return null;
 		}
@@ -61,8 +78,15 @@ public class PlayerController {
 	
 	@GetMapping("player/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Player showById(@PathVariable Long id) {
-		return playerService.findById(id);
+	public PlayerDTO showById(@PathVariable Long id) {
+		Player playerEncontrado = playerService.findById(id);
+		return PlayerDTO.builder().id(playerEncontrado.getId())
+				.namePlayer(playerEncontrado.getNamePlayer())
+				.age(playerEncontrado.getAge())
+				.team(playerEncontrado.getTeam())
+				.position(playerEncontrado.getPosition())
+				.urlImage(playerEncontrado.getUrlImage())
+				.build();
 	}
 	
 }
